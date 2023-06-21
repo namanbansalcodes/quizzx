@@ -36,10 +36,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django.contrib.staticfiles',
     'User',
-    'django_inlinecss'
+    'django_inlinecss',
+    'bootstrap4'
 ]
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -156,4 +155,4 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400 # 1 day in seconds
 ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
 LOGIN_REDIRECT_URL = '/' 
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

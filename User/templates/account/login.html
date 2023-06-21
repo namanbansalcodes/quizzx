@@ -44,8 +44,9 @@
   
   <button  class="btn btn-outline-primary " type="submit">{% trans "Sign In" %}</button>
   <a  class="btn btn-outline-dark" href="{% url 'account_reset_password' %}">{% trans "Forgot Password ?" %}</a>  
-
 </form>
+
+
     {% load account socialaccount %}
 
     {% get_providers as socialaccount_providers %}
