@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 20px;
+  margin-top: 100px;
+}
+
+h1 {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.how-it-works {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.description {
+  flex: 1;
+}
+
+.homeImage img {
+  width: 100%;
+  max-width: 400px;
+}
+
+.try-it-button {
+  display: inline-block;
+  background-color: rgb(62, 178, 62);
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.try-it-button:hover{
+  background-color: rgb(57, 159, 57);
+
+}
+.who-is-it-for {
+  margin-top: 80px;
+  text-align: center;
+  background-color: rgba(186, 202, 187, 0.41);
+  border-radius: 20px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  padding-right: 35px;
+  padding-left: 35px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.082);
+}
+
+
+.use-case-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.use-case {
+  width: 25%;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.use-case h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.use-case p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.use-case-image-student {
+  display: block;
+  margin: 0 auto;
+  width: 200px; /* Adjust the width as needed */
+}
+
+.use-case-image-educator {
+  display: block;
+  margin: 0 auto;
+  width: 136px; /* Adjust the width as needed */
+}
+
+.use-case-image-creator {
+  padding-top: 40px;
+  display: block;
+  margin: 0 auto;
+  width: 225px; /* Adjust the width as needed */
+  margin-bottom: 49px;
+}
+
+.how-it-works-description {
+  font-size: 25px;
+}

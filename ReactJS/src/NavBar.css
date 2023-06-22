@@ -1,0 +1,60 @@
+  
+  .logo {
+    width: 130px; /* Adjust the size of the logo according to your design */
+    height: 60px;
+    margin-right: 20px;
+  }
+  
+  /* Add the logo image as a background */
+  .logo-image {
+    background-image: url('./Assets/Logo.jpeg'); /* Replace 'path/to/your/logo.png' with the actual path to your logo file */
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav ul li:last-child {
+    margin-right: 0;
+    margin-left: 30px;
+  }
+  
+  nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    background-color: #c4c4c4;
+  }
+  
+  nav ul li:last-child a{
+    background-color: rgb(62, 178, 62);
+    border-radius: 15px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 10px;
+  }  
+
+  nav ul li:last-child a:hover{
+    background-color: rgb(57, 159, 57);
+  }
