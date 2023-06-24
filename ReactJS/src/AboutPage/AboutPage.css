@@ -1,0 +1,40 @@
+  .container1 {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .h1 {
+    font-size: 32px;
+    margin-bottom: 60px;
+  }
+  
+  .h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: black;
+  }
+  
+  .about-content {
+    display: flex;
+  }
+  
+  .about-motivation {
+    flex: 1;
+    margin-right: 100px;
+  }
+  
+  .about-technologies {
+    flex: 1;
+    color:rgb(123, 123, 123)
+  }
+  
+  .p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color:rgb(123, 123, 123);
+    display: flex;
+    text-align: justify;
+  }
+  
