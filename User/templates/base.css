@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+.navbar-brand {
+    font-size: 50px;
+    font-weight: bold;
+    color: #4042E2;
+}
+
+
+/* CSS for Beta sign */
+
+.beta-sign {
+    top: 0;
+    right: 0;
+    background-color: yellow;
+    color: #000;
+    font-size: 10px;
+    padding: 2px 5px;
+    font-weight: 700;
+    border-radius: 2px;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+
+/* CSS for Beta sign */
+
+body {
+    max-width: 2000px;
+    margin: auto;
+}
+
+.row {
+    border-radius: 30px;
+    margin: 15px;
+    /* Reduce the margin for smaller screens */
+}
+
+.img-fluid {
+    border-radius: 30px;
+}
+
+.border {
+    border-radius: 30px;
+    border-width: 30px;
+}
+
+.mainContent {
+    display: none;
+}
+
+.opener-text {
+    font-size: 70px;
+    /* Decrease the font size for a slightly smaller heading */
+    font-weight: 650;
+    /* Use a numeric value for 'bold' to ensure consistency across browsers */
+    font-family: 'Lato', sans-serif;
+}
+
+.heading-text {
+    font-size: 60px;
+    /* Decrease the font size for a slightly smaller heading */
+    font-weight: 660;
+    /* Use a numeric value for 'bold' to ensure consistency across browsers */
+    font-family: 'Lato', sans-serif;
+}
+
+.drop-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+    box-sizing: border-box;
+    /* Include padding and border in the width calculation */
+}
+
+.drop-container:hover,
+.drop-container.drag-active {
+    background: #eee;
+    border-color: #111;
+}
+
+.drop-container:hover .drop-title,
+.drop-container.drag-active .drop-title {
+    color: #222;
+}
+
+.drop-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+
+input[type=file] {
+    width: 400px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #4042E2;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+}
+
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.home {
+    margin: 5vh;
+    margin-bottom: 11vh;
+}
+
+li {
+    margin: 1vw;
+}
+
+.gray {
+    background-color: #E3EAFD;
+    border-radius: 30px;
+    padding: 15px;
+    /* Reduce padding for smaller screens */
+}
+
+.generator-on-home {
+    margin-bottom: 15vh;
+    max-width: 1500px;
+}
+
+p {
+    font-size: larger;
+}
+
+#div_id_file {
+    margin-bottom: 5vh;
+    align-content: center;
+    justify-content: center;
+}
+
+input {
+    margin-top: 10px;
+    /* Reduce margin for smaller screens */
+    margin-bottom: 10px;
+    /* Reduce margin for smaller screens */
+}
+
+footer {
+    margin-top: 10vh;
+    /* Reduce margin for smaller screens */
+}
+
+h3 {
+    color: #4042E2;
+    /* Fix color value by adding '#' before the color code */
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f9f7;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+
+.btn {
+    background-color: #4042E2;
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #4042E2;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+
+/* Media Queries for Phone Mode */
+
+@media only screen and (max-width: 1000px) {
+    .beta-sign {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For screens up to 768px wide (tablets and phones) */
+    .drop-container {
+        padding: 10px;
+    }
+    .home {
+        margin: 10px;
+    }
+    .navbar-brand {
+        font-size: 40px;
+    }
+    .opener-text {
+        font-size: 50px;
+        text-align: center;
+    }
+    .gray {
+        padding: 10px;
+        /* Reduce padding for smaller screens */
+    }
+    .heading-text {
+        font-size: 30px;
+    }
+    .text-left {
+        text-align: center;
+        /* Center the text inside the div */
+    }
+    .btn {
+        display: block;
+        background-color: #4042E2;
+        /* Convert buttons to block-level elements */
+        margin: 10px auto;
+        /* Center the block-level buttons horizontally */
+    }
+    .optional-text {
+        display: none;
+    }
+    p {
+        text-align: center;
+    }
+    input {
+        margin-top: 5px;
+        /* Reduce margin for smaller screens */
+        margin-bottom: 5px;
+        /* Reduce margin for smaller screens */
+    }
+    footer {
+        margin-top: 5vh;
+        /* Reduce margin for smaller screens */
+    }
+}
+
+
+/* CSS for tags input */
+
+.topics-title {
+    font-weight: bold;
+}
+
+.tags-input-wrapper {
+    padding: 2px 10px 2px 10px;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
+.tags-input-wrapper input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 140px;
+    margin-left: 8px;
+}
+
+.tags-input-wrapper .tag {
+    display: inline-block;
+    background-color: #4042E2;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 5px 2px 5px;
+    margin-right: 5px;
+}
+
+.tags-input-wrapper .tag a {
+    margin: 2px 5px 2px 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+/* CSS for tags input */

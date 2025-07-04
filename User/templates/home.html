@@ -1,0 +1,84 @@
+{% extends "base.html" %} {% load static %} {% block title %} Quizzx {% endblock title %} {% block content %}
+
+<div class="container-fluid">
+    <div class="row home">
+        <div class="col-lg-6">
+            <div class="text-left p-lg-5">
+                <p class="opener-text">Make Quizzes From Your Documents</p>
+
+                <p class="optional-text">Instantly transform any document into an engaging MCQ quiz using advanced AI. Dive into an immersive learning experience, perfect for educators, students, and curious minds alike. Start simplifying and gamifying knowledge today!</p>
+                <a href="{% url 'gen' %}" class="btn btn-primary m-2">Make Quizz!</a>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <img class="img-fluid w-100" src="{% static 'Assets/home-image.jpg' %}">
+        </div>
+    </div>
+</div>
+
+
+
+<!--If there are any error messages, this code block will hande it-->
+{% if messages %} {% for message in messages %}
+<script>
+    alert("{{ message }}");
+</script>{% endfor %} {% endif %}
+<!--Code block ends-->
+
+{% include 'generator.html' %}
+
+<div class="container-fluid">
+    <div class="row justify-content-center gray text-center m-5 p-lg-5">
+        <p class="heading-text m-3">Made For All</p>
+        <div class="col-lg-4 col-md-6 p-3">
+            <img class="img-fluid w-75" src="{% static 'Assets/student.png' %}"><br><br>
+
+            <h2>Students</h2>
+            <hr>
+            <p class="optional-text">
+                Quizzx provides students with an interactive and engaging way to test their knowledge, prepare for exams, and enhance their learning experience.
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-6 p-3">
+            <img class="img-fluid w-75" src="{% static 'Assets/creator.png' %}"><br><br>
+            <h2>Creators</h2>
+            <hr>
+            <p class="optional-text">
+                Quizzx empowers content creators to generate dynamic quizzes that can be used in e-learning platforms, websites, and online courses to engage their audience.
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-6 p-3">
+            <img class="img-fluid w-75" src="{% static 'Assets/teacher.png' %}"><br><br>
+            <h2>Educators</h2>
+            <hr>
+            <p class="optional-text">
+                Quizzx assists educators in creating customized quizzes and assessments, saving time and effort while maintaining high-quality educational content.
+            </p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center text-center m-5 p-lg-5">
+        <p class="heading-text m-3">Easy To Use</p>
+
+        <div class="col-lg-4 col-md-4 p-3">
+            <img class="img-fluid w-75" src="{% static 'Assets/upload.png' %}"><br><br>
+            <h2>Upload</h2>
+            <p class="optional-text">Drag and drop or select your desired document. Supports PDF, DOCX, and TXT formats.</p>
+        </div>
+        <div class="col-lg-4 col-md-4 p-3">
+            <img class="img-fluid w-75" src="{% static 'Assets/process.png' %}"><br><br>
+            <h2>Generate</h2>
+            <p class="optional-text">Our advanced AI analyzes your content and creates a tailored quiz in moments.</p>
+        </div>
+        <div class="col-lg-4 col-md-4 p-3">
+            <img class="img-fluid w-75" src="{% static 'Assets/download.png' %}"><br><br>
+            <h2>Download</h2>
+
+            <p class="optional-text">Instantly download your custom quiz, ready for use or distribution.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,10 @@
+.vscode
+quizzx/__pycache__
+User/__pycache__
+User/migrations
+data
+secrets.env
+.github
+.target
+quizzx/settings/__pycache__
+User/migrations/__pycache__

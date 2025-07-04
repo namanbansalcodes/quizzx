@@ -1,0 +1,312 @@
+<!--If there are any error messages, this code block will hande it-->
+{% if messages %} {% for message in messages %}
+<script>
+    alert("{{ message }}");
+</script>{% endfor %} {% endif %}
+<!--Code block ends-->
+
+
+<div class="container-fluid generator-on-home">
+
+    <!-- MCQ Generator Form INTRODUCTION-->
+    <div class="row m-3 justify-content-center text-center">
+        <div class="col-md-8">
+            <!-- Adjusted this from col-md-6 to col-md-8 -->
+            <h1>MCQ Generator</h1>
+            <h3>by Quizzx</h3><br>
+            <p>
+                Upload your document and let us transform it into a quiz in seconds.
+            </p>
+        </div>
+    </div>
+    <!--code block ends-->
+
+
+    <!--Code for the MCQ Generator Form-->
+    <div class="row m-5 justify-content-center align-content-center">
+        <div class="col-md-9 col-12">
+
+            <div class="row">
+                <div class="col-12 m-2">
+                    <form id="mainform" method="POST" enctype="multipart/form-data" action="{% url 'gen' %}">
+                        {% csrf_token %}
+                        <label for="documents" class="drop-container" id="dropcontainer">
+                            <span class="drop-title">Drop files here</span>
+                            or
+                            <input type="file" name="document"  id="file-input-field" accept=".pdf, .doc, .docx, .txt" required>
+                        </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 m-2">
+                    <span class="topics-title">Important Topics</span><span> (optional)</span>
+                    <input type="text" id="tag-input1" name="topics">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary m-3" id='submit-button' type="submit">Generate Quizz!</button>
+            </div>
+            </form>
+            <!-- Code for Form here-->
+
+
+        </div>
+        <!-- Code for Form here-->
+    </div>
+    <!--code block ends-->
+
+    <!--Code for the displaying MCQs-->
+    {% if mcqs %}
+
+    <!--Code for the MCQ Headings and all-->
+    <div class="container printthese">
+        <div class="row m-5 justify-content-start">
+            <div class="col-sm-12 col-md-6">
+                <h1>
+                    MCQs on {{ filename }}
+                </h1>
+                <p>generated {{ mcqs|length }} within {{ time }} seconds with MCQ Generator by Quizzx</p>
+                <button id="showAnswerBtn" class="btn btn-primary" onclick="toggleAnswers()">Show Answers</button>
+                <button id="printBtn" class="btn btn-primary" onclick="printMCQs()">Print MCQs</button>
+            </div>
+        </div>
+
+
+        <!--Code for the MCQ Headings ends here-->
+
+        <!--Code for the displaying the MCQs using for loop-->
+        <div class="row m-5 justify-content-start">
+            <div class="col-sm-12 col-md-8 m-3">
+                {% for mcq in mcqs %}
+                <h3>{{ forloop.counter }}. {{ mcq.question }}</h3>
+                <form>
+                    {% for option in mcq.options %}
+                    <input type="radio" id="{{ option }}" name="answer" value="{{ option }}">
+                    <label for="{{ option }}">{{ option }}</label>
+                    <br> {% endfor %}
+                </form>
+                <p class="ans" style="display: none">Correct Answer: {{ mcq.answer }}</p>
+                <hr>
+                <br> {% endfor %}
+            </div>
+        </div>
+        <!--Code for the displaying the MCQs using for loop ends here-->
+
+    </div>
+    {% endif %}
+    <!--Code for the displaying MCQs-->
+</div>
+
+
+
+
+<!--Scripts-->
+<script>
+    // script for Tag Input
+    (function() {
+
+        "use strict"
+
+
+        // Plugin Constructor
+        var TagsInput = function(opts) {
+            this.options = Object.assign(TagsInput.defaults, opts);
+            this.init();
+        }
+
+        // Initialize the plugin
+        TagsInput.prototype.init = function(opts) {
+            this.options = opts ? Object.assign(this.options, opts) : this.options;
+
+            if (this.initialized)
+                this.destroy();
+
+            if (!(this.orignal_input = document.getElementById(this.options.selector))) {
+                console.error("tags-input couldn't find an element with the specified ID");
+                return this;
+            }
+
+            this.arr = [];
+            this.wrapper = document.createElement('div');
+            this.input = document.createElement('input');
+            init(this);
+            initEvents(this);
+
+            this.initialized = true;
+            return this;
+        }
+
+        // Add Tags
+        TagsInput.prototype.addTag = function(string) {
+
+            if (this.anyErrors(string))
+                return;
+
+            this.arr.push(string);
+            var tagInput = this;
+
+            var tag = document.createElement('span');
+            tag.className = this.options.tagClass;
+            tag.innerText = string;
+
+            var closeIcon = document.createElement('a');
+            closeIcon.innerHTML = '&times;';
+
+            // delete the tag when icon is clicked
+            closeIcon.addEventListener('click', function(e) {
+                e.preventDefault();
+                var tag = this.parentNode;
+
+                for (var i = 0; i < tagInput.wrapper.childNodes.length; i++) {
+                    if (tagInput.wrapper.childNodes[i] == tag)
+                        tagInput.deleteTag(tag, i);
+                }
+            })
+
+
+            tag.appendChild(closeIcon);
+            this.wrapper.insertBefore(tag, this.input);
+            this.orignal_input.value = this.arr.join(',');
+
+            return this;
+        }
+
+        // Delete Tags
+        TagsInput.prototype.deleteTag = function(tag, i) {
+            tag.remove();
+            this.arr.splice(i, 1);
+            this.orignal_input.value = this.arr.join(',');
+            return this;
+        }
+
+        // Make sure input string have no error with the plugin
+        TagsInput.prototype.anyErrors = function(string) {
+            if (this.options.max != null && this.arr.length >= this.options.max) {
+                console.log('max tags limit reached');
+                return true;
+            }
+
+            if (!this.options.duplicate && this.arr.indexOf(string) != -1) {
+                console.log('duplicate found " ' + string + ' " ')
+                return true;
+            }
+
+            return false;
+        }
+
+        // Add tags programmatically 
+        TagsInput.prototype.addData = function(array) {
+            var plugin = this;
+
+            array.forEach(function(string) {
+                plugin.addTag(string);
+            })
+            return this;
+        }
+
+        // Get the Input String
+        TagsInput.prototype.getInputString = function() {
+            return this.arr.join(',');
+        }
+
+
+        // destroy the plugin
+        TagsInput.prototype.destroy = function() {
+            this.orignal_input.removeAttribute('hidden');
+
+            delete this.orignal_input;
+            var self = this;
+
+            Object.keys(this).forEach(function(key) {
+                if (self[key] instanceof HTMLElement)
+                    self[key].remove();
+
+                if (key != 'options')
+                    delete self[key];
+            });
+
+            this.initialized = false;
+        }
+
+        // Private function to initialize the tag input plugin
+        function init(tags) {
+            tags.wrapper.append(tags.input);
+            tags.wrapper.classList.add(tags.options.wrapperClass);
+            tags.orignal_input.setAttribute('hidden', 'true');
+            tags.orignal_input.parentNode.insertBefore(tags.wrapper, tags.orignal_input);
+        }
+
+        // initialize the Events
+        function initEvents(tags) {
+            tags.wrapper.addEventListener('click', function() {
+                tags.input.focus();
+            });
+
+
+            tags.input.addEventListener('keydown', function(e) {
+                var str = tags.input.value.trim();
+
+                if (!!(~[9, 13, 188].indexOf(e.keyCode))) {
+                    e.preventDefault();
+                    tags.input.value = "";
+                    if (str != "")
+                        tags.addTag(str);
+                }
+
+            });
+        }
+
+
+        // Set All the Default Values
+        TagsInput.defaults = {
+            selector: '',
+            wrapperClass: 'tags-input-wrapper',
+            tagClass: 'tag',
+            max: null,
+            duplicate: false
+        }
+
+        window.TagsInput = TagsInput;
+
+    })();
+
+    var tagInput1 = new TagsInput({
+        selector: 'tag-input1',
+        duplicate: false,
+        max: 10
+    });
+    // Script for Tag Input
+
+
+    // script to show and hide correct answers
+    function toggleAnswers() {
+        var button = document.getElementById("showAnswerBtn");
+        var answers = document.getElementsByClassName("ans");
+
+        if (button.innerHTML === "Show Answers") {
+            button.innerHTML = "Hide Answers";
+            for (var i = 0; i < answers.length; i++) {
+                answers[i].style.display = "block";
+            }
+        } else {
+            button.innerHTML = "Show Answers";
+            for (var i = 0; i < answers.length; i++) {
+                answers[i].style.display = "none";
+            }
+        }
+    }
+
+    // scripts for the print mcq button
+    function printMCQs() {
+        var printContents = document.querySelector(".printthese").innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+<!--Scripts-->
